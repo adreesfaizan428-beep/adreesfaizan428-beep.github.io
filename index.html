@@ -1,467 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="monetag" content="e1c4c47bdc4f984f715dd393f87f862a">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faizan | AI Solutions Architect & Full-Stack Dev</title>
-    
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Faizan | Digital Architect & Portfolio</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 1px solid #222;
+            border-radius: 10px;
+            background: #0a0a0a;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+        h1 { color: #00ffcc; font-size: 2.5rem; margin-bottom: 10px; }
+        p { color: #888; font-size: 1.1rem; line-height: 1.6; }
+        .btn {
+            display: inline-block;
+            background: #00ffcc;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #00b399; box-shadow: 0 0 15px #00ffcc; }
+    </style>
 </head>
 <body>
 
-    <div id="root"></div>
+    <div class="container">
+        <h1>Faizan - Digital Architect</h1>
+        <p>Welcome to my professional portfolio. Providing premium SEO content writing, Shopify store optimization, web development, and cinematic UI/UX graphic design solutions globally.</p>
+        <a href="#" class="btn">Explore My Work</a>
+    </div>
 
-    <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
-
-        // --- DESIGN TOKENS ------------------------------------------------------------
-        const T = {
-          bg: "#070709",
-          surface: "#0d0d12",
-          glass: "rgba(255,255,255,0.03)",
-          border: "rgba(255,255,255,0.07)",
-          emerald: "#00ff87",
-          blue: "#0ea5e9",
-          silver: "#c0c8d8",
-          muted: "#4a5165",
-          text: "#e8eaf2",
-        };
-
-        // --- GLOBAL STYLES ------------------------------------------------------------
-        const GlobalStyles = () => (
-          <style>{`
-            @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap');
-
-            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-            html { scroll-behavior: smooth; }
-            body {
-              background: \${T.bg};
-              color: \${T.text};
-              font-family: 'DM Sans', sans-serif;
-              overflow-x: hidden;
-            }
-
-            ::-webkit-scrollbar { width: 4px; }
-            ::-webkit-scrollbar-track { background: \${T.bg}; }
-            ::-webkit-scrollbar-thumb { background: #1e2030; border-radius: 2px; }
-
-            .syne { font-family: 'Syne', sans-serif; }
-            .mono { font-family: 'JetBrains Mono', monospace; }
-
-            .glass {
-              background: rgba(13, 13, 18, 0.7);
-              backdrop-filter: blur(12px);
-              -webkit-backdrop-filter: blur(12px);
-              border: 1px solid \${T.border};
-              will-change: transform;
-            }
-
-            @keyframes float {
-              0%, 100% { transform: translateY(0px); }
-              50% { transform: translateY(-8px); }
-            }
-            @keyframes pulse-glow {
-              0%, 100% { box-shadow: 0 0 15px rgba(0,255,135,0.1); }
-              50% { box-shadow: 0 0 30px rgba(0,255,135,0.2); }
-            }
-            .animate-float { animation: float 6s ease-in-out infinite; }
-            .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-
-            .text-gradient-emerald {
-              background: linear-gradient(135deg, \${T.emerald} 0%, #00d4ff 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              background-clip: text;
-            }
-            .text-gradient-silver {
-              background: linear-gradient(135deg, #c0c8d8 0%, #ffffff 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              background-clip: text;
-            }
-
-            .card-hover { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease; }
-            .card-hover:hover {
-              transform: translateY(-4px);
-              border-color: rgba(0,255,135,0.3) !important;
-            }
-
-            .btn-primary { transition: all 0.3s ease; cursor: pointer; }
-            .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,255,135,0.15); }
-
-            .nav-link { position: relative; transition: color 0.3s ease; background: none; border: none; cursor: pointer; }
-            .nav-link::after {
-              content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: \${T.emerald}; transition: width 0.3s ease;
-            }
-            .nav-link:hover::after { width: 100%; }
-            .nav-link:hover { color: \${T.emerald}; }
-
-            .grain-overlay {
-              position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.015;
-              background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            }
-
-            .skill-tag { transition: all 0.2s ease; cursor: default; }
-            .skill-tag:hover { background: rgba(0,255,135,0.08); color: \${T.emerald}; border-color: rgba(0,255,135,0.3); }
-
-            input, textarea, select { transition: border-color 0.3s ease; }
-            input:focus, textarea:focus, select:focus { outline: none; border-color: \${T.emerald} !important; }
-          `}</style>
-        );
-
-        // --- HIGH PERFORMANCE CANVAS -------------------------------------------------
-        const ParticleCanvas = () => {
-          const canvasRef = useRef(null);
-
-          useEffect(() => {
-            const canvas = canvasRef.current;
-            const ctx = canvas.getContext("2d");
-            let W = canvas.width = window.innerWidth;
-            let H = canvas.height = window.innerHeight;
-
-            const isMobile = W < 768;
-            const PARTICLE_COUNT = isMobile ? 25 : 50; 
-            const CONNECTION_DIST = 100;
-
-            const particles = Array.from({ length: PARTICLE_COUNT }, () => ({
-              x: Math.random() * W,
-              y: Math.random() * H,
-              vx: (Math.random() - 0.5) * 0.2,
-              vy: (Math.random() - 0.5) * 0.2,
-              r: Math.random() * 1.2 + 0.5,
-              color: Math.random() > 0.6 ? T.emerald : "rgba(255,255,255,0.3)",
-            }));
-
-            let id;
-            const draw = () => {
-              ctx.clearRect(0, 0, W, H);
-              const grad = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W > H ? W/2 : H/2);
-              grad.addColorStop(0, "rgba(0,255,135,0.02)");
-              grad.addColorStop(1, "transparent");
-              ctx.fillStyle = grad;
-              ctx.fillRect(0, 0, W, H);
-
-              particles.forEach(p => {
-                p.x += p.vx; p.y += p.vy;
-                if (p.x < 0 || p.x > W) p.vx *= -1;
-                if (p.y < 0 || p.y > H) p.vy *= -1;
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.fill();
-              });
-
-              for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                  const dx = particles[i].x - particles[j].x;
-                  const dy = particles[i].y - particles[j].y;
-                  const d = Math.sqrt(dx * dx + dy * dy);
-                  if (d < CONNECTION_DIST) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(0,255,135,\${(1 - d/CONNECTION_DIST) * 0.08})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.stroke();
-                  }
-                }
-              }
-              id = requestAnimationFrame(draw);
-            };
-
-            draw();
-            const resize = () => { if(canvas) { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; } };
-            window.addEventListener("resize", resize);
-            return () => { cancelAnimationFrame(id); window.removeEventListener("resize", resize); };
-          }, []);
-
-          return <canvas ref={canvasRef} style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: 0 }} />;
-        };
-
-        // --- NAVIGATION ---------------------------------------------------------------
-        const Nav = () => {
-          const [menuOpen, setMenuOpen] = useState(false);
-          const scrollTo = (id) => {
-            document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
-            setMenuOpen(false);
-          };
-
-          return (
-            <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 5%", background: "rgba(7,7,9,0.8)", borderBottom: `1px solid \${T.border}`, backdropFilter: "blur(10px)" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 64, maxWidth: 1400, margin: "0 auto" }}>
-                <div className="syne" style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.02em", cursor: "pointer" }} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-                  <span className="text-gradient-emerald">F</span>AIZAN <span style={{ color: T.muted, fontSize: 10, fontWeight: 400 }}>AI × DEV</span>
-                </div>
-
-                <div style={{ display: "flex", gap: 24, alignItems: "center" }} className="desktop-nav">
-                  {["About", "Expertise", "Experience", "Work", "Contact"].map(l => (
-                    <button key={l} className="nav-link" onClick={() => scrollTo(l)} style={{ color: T.silver, fontSize: 12, fontFamily: "inherit" }}>
-                      {l.toUpperCase()}
-                    </button>
-                  ))}
-                </div>
-
-                <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "none", flexDirection: "column", gap: 5 }} className="hamburger">
-                  <span style={{ display: "block", width: 20, height: 1, background: T.text }} />
-                  <span style={{ display: "block", width: 20, height: 1, background: T.text }} />
-                </button>
-              </div>
-
-              {menuOpen && (
-                <div style={{ background: T.surface, padding: 20, display: "flex", flexDirection: "column", gap: 16, borderBottom: `1px solid \${T.border}` }}>
-                  {["About", "Expertise", "Experience", "Work", "Contact"].map(l => (
-                    <button key={l} onClick={() => scrollTo(l)} style={{ background: "none", border: "none", color: T.text, textAlign: "left", fontSize: 16, fontWeight: 500 }}>{l}</button>
-                  ))}
-                </div>
-              )}
-
-              <style>{`
-                @media (max-width: 768px) { .desktop-nav { display: none !important; } .hamburger { display: flex !important; } }
-              `}</style>
-            </nav>
-          );
-        };
-
-        // --- HERO ---------------------------------------------------------------------
-        const Hero = () => (
-          <section id="about" style={{ minHeight: "90vh", display: "flex", alignItems: "center", padding: "100px 5% 60px", position: "relative", zIndex: 1 }}>
-            <div style={{ maxWidth: 1200, width: "100%", margin: "0 auto" }}>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
-                <span style={{ width: 6, height: 6, borderRadius: "50%", background: T.emerald }} />
-                <span className="mono" style={{ fontSize: 11, color: T.emerald, letterSpacing: "0.1em" }}>EXPERT SOLUTION ARCHITECT</span>
-              </div>
-
-              <h1 className="syne" style={{ fontSize: "clamp(44px, 7vw, 90px)", fontWeight: 800, lineHeight: 0.95, marginBottom: 20 }}>
-                <span className="text-gradient-silver">FAIZAN</span><br />
-                <span className="text-gradient-emerald">AI ARCHITECT</span>
-              </h1>
-
-              <p style={{ fontSize: "clamp(15px, 1.5vw, 18px)", color: T.silver, maxWidth: 600, lineHeight: 1.6, marginBottom: 36 }}>
-                Crafting elite digital products. I combine autonomous AI frameworks, scalable web infrastructure, and data-driven SEO growth to transform technical ideas into high-performing assets.
-              </p>
-
-              <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-                <button className="btn-primary" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                  style={{ background: T.emerald, color: "#000", border: "none", padding: "14px 28px", borderRadius: 4, fontWeight: 700, fontFamily: "'Syne', sans-serif", fontSize: 13 }}>
-                  GET IN TOUCH
-                </button>
-              </div>
-
-              <div style={{ display: "flex", gap: 40, marginTop: 64, paddingTop: 32, borderTop: `1px solid \${T.border}`, flexWrap: "wrap" }}>
-                {[["4+ Years", "Proven Track Record"], ["50+", "Successful Projects"], ["100%", "Client Retention"]].map(([num, label]) => (
-                  <div key={label}>
-                    <div className="syne" style={{ fontSize: 24, fontWeight: 800, color: T.emerald }}>{num}</div>
-                    <div style={{ fontSize: 11, color: T.muted, marginTop: 4, letterSpacing: "0.05em" }}>{label.toUpperCase()}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        );
-
-        // --- EXPERTISE ----------------------------------------------------------------
-        const Expertise = () => {
-          const pillars = [
-            { icon: "?", label: "AI ENGINEERING", desc: "Custom AI workflows, state-of-the-art prompt optimization, and seamless LLM deployment for automation.", skills: ["Custom Agents", "Prompts", "OpenAI", "RAG Systems"] },
-            { icon: "?", label: "FULL-STACK DEV", desc: "Building highly fast React architectures, robust web apps, and bespoke high-converting Shopify stores.", skills: ["React", "Next.js", "Shopify", "Node.js"] },
-            { icon: "?", label: "SEO & GROWTH", desc: "Deep technical infrastructure SEO audits, rich snippets markup, and data structures built to scale naturally.", skills: ["Technical SEO", "Schema", "Core Web Vitals", "Analytics"] },
-            { icon: "?", label: "MOTION GRAPHICS", desc: "Bespoke 2D/3D interface animations, dynamic identity systems, and elite custom digital mockups.", skills: ["UI Motion", "Figma", "After Effects", "Blender"] }
-          ];
-
-          return (
-            <section id="expertise" style={{ padding: "80px 5%", position: "relative", zIndex: 1 }}>
-              <div style={{ maxWidth: 1400, margin: "0 auto" }}>
-                <div style={{ marginBottom: 48 }}>
-                  <div className="mono" style={{ fontSize: 11, color: T.emerald, marginBottom: 8 }}>02 / PILLARS</div>
-                  <h2 className="syne" style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800 }}>CORE EXPERTISE</h2>
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 16 }}>
-                  {pillars.map(p => (
-                    <div key={p.label} className="glass card-hover" style={{ padding: 28, borderRadius: 8 }}>
-                      <div style={{ fontSize: 28, color: T.emerald, marginBottom: 12 }}>{p.icon}</div>
-                      <div className="mono" style={{ fontSize: 10, color: T.emerald, marginBottom: 8 }}>{p.label}</div>
-                      <p style={{ fontSize: 13, color: T.silver, lineHeight: 1.6, marginBottom: 20 }}>{p.desc}</p>
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                        {p.skills.map(s => <span key={s} className="mono skill-tag" style={{ fontSize: 9, border: `1px solid \${T.border}`, padding: "3px 8px", borderRadius: 3, color: T.muted }}>{s}</span>)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          );
-        };
-
-        // --- EXPERIENCE ---------------------------------------------------------------
-        const Experience = () => {
-          const timeline = [
-            { role: "Senior Freelance Digital Consultant", company: "Global Clients (Upwork / Fiverr)", period: "2023 - Present", detail: "Architecting standalone business solutions, executing high-converting Shopify build-outs, full-stack product development, and running automation infrastructure powered by custom AI agents." },
-            { role: "Full-Stack & SEO Engineer", company: "Digital Agency", period: "2022 - 2023", detail: "Developed multi-page client experiences with blazing fast loading speeds. Programmed full schema injections increasing search traffic visibility by over 60% organically." }
-          ];
-
-          return (
-            <section id="experience" style={{ padding: "80px 5%", position: "relative", zIndex: 1 }}>
-              <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-                <div style={{ marginBottom: 48 }}>
-                  <div className="mono" style={{ fontSize: 11, color: T.emerald, marginBottom: 8 }}>03 / JOURNEY</div>
-                  <h2 className="syne" style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800 }}>PROFESSIONAL EXPERIENCE</h2>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                  {timeline.map((t, idx) => (
-                    <div key={idx} className="glass" style={{ padding: 28, borderRadius: 8, display: "flex", gap: 20, flexWrap: "wrap" }}>
-                      <div className="mono" style={{ color: T.emerald, fontSize: 13, minWidth: 100 }}>{t.period}</div>
-                      <div style={{ flex: 1 }}>
-                        <h3 className="syne" style={{ fontSize: 18, fontWeight: 700, color: T.text }}>{t.role}</h3>
-                        <div className="mono" style={{ fontSize: 12, color: T.muted, marginBottom: 12 }}>{t.company}</div>
-                        <p style={{ fontSize: 13, color: T.silver, lineHeight: 1.6 }}>{t.detail}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          );
-        };
-
-        // --- WORK / CASE STUDIES ------------------------------------------------------
-        const Work = () => {
-          const projects = [
-            { title: "Autonomous Research System", category: "AI ENGINEERING", desc: "Orchestrated multiple LLM agents performing continuous web scraping and structured analysis.", tech: ["LangChain", "GPT-4", "Node.js"] },
-            { title: "Headless E-Commerce Store", category: "FULL-STACK WEB", desc: "Designed a lightweight, dynamic commerce system with a modular product catalog architecture.", tech: ["Shopify API", "React", "Tailwind"] },
-            { title: "Programmatic SEO Engine", category: "SEO & GROWTH", desc: "Built system maps capable of auto-generating hyper-targeted data landing pages with absolute markup verification.", tech: ["Python", "Automation", "APIs"] }
-          ];
-
-          return (
-            <section id="work" style={{ padding: "80px 5%", position: "relative", zIndex: 1 }}>
-              <div style={{ maxWidth: 1400, margin: "0 auto" }}>
-                <div style={{ marginBottom: 48 }}>
-                  <div className="mono" style={{ fontSize: 11, color: T.emerald, marginBottom: 8 }}>04 / SELECTED CASES</div>
-                  <h2 className="syne" style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800 }}>CASE STUDIES</h2>
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
-                  {projects.map((p, i) => (
-                    <div key={i} className="glass card-hover" style={{ padding: 32, borderRadius: 8, display: "flex", flexDirection: "column", justifycontent: "space-between", minHeight: 220 }}>
-                      <div>
-                        <div className="mono" style={{ fontSize: 10, color: T.emerald, marginBottom: 12 }}>{p.category}</div>
-                        <h3 className="syne" style={{ fontSize: 20, fontWeight: 700, marginBottom: 12 }}>{p.title}</h3>
-                        <p style={{ fontSize: 13, color: T.silver, lineHeight: 1.5 }}>{p.desc}</p>
-                      </div>
-                      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 24 }}>
-                        {p.tech.map(t => <span key={t} className="mono" style={{ fontSize: 9, background: "rgba(255,255,255,0.02)", padding: "3px 8px", borderRadius: 3, color: T.muted }}>{t}</span>)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          );
-        };
-
-        // --- NATIVE BANNER INJECTOR (SAFE ADSTERRA CONTEXT) ---------------------------
-        const NativeAdSlot = () => {
-          const containerRef = useRef(null);
-
-          useEffect(() => {
-            if (containerRef.current) {
-              const scriptConfig = document.createElement("script");
-              scriptConfig.type = "text/javascript";
-              scriptConfig.text = `
-                atOptions = {
-                  'key' : '29372715',
-                  'format' : 'iframe',
-                  'height' : 90,
-                  'width' : 728,
-                  'params' : {}
-                };
-              `;
-
-              const scriptInvoke = document.createElement("script");
-              scriptInvoke.type = "text/javascript";
-              scriptInvoke.src = "//www.highperformanceformat.com/29372715/invoke.js";
-
-              containerRef.current.appendChild(scriptConfig);
-              containerRef.current.appendChild(scriptInvoke);
-            }
-          }, []);
-
-          return (
-            <div style={{ width: "100%", display: "flex", justifyContent: "center", padding: "20px 5%", background: "transparent" }}>
-              <div ref={containerRef} style={{ maxWidth: "100%", overflow: "hidden", borderRadius: 8, border: `1px solid \${T.border}`, background: T.surface }} />
-            </div>
-          );
-        };
-
-        // --- SOCIAL BAR INJECTOR (SAFE CONTEXT) ---------------------------------------
-        const SocialAdSlot = () => {
-          useEffect(() => {
-            const scriptSocial = document.createElement("script");
-            scriptSocial.type = "text/javascript";
-            scriptSocial.src = "//www.highperformanceformat.com/29372714/invoke.js";
-            document.body.appendChild(scriptSocial);
-          }, []);
-          return null;
-        };
-
-        // --- CONTACT ------------------------------------------------------------------
-        const Contact = () => {
-          const [sent, setSent] = useState(false);
-          return (
-            <section id="contact" style={{ padding: "80px 5% 120px", position: "relative", zIndex: 1 }}>
-              <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
-                <div className="mono" style={{ fontSize: 11, color: T.emerald, marginBottom: 8 }}>05 / INQUIRIES</div>
-                <h2 className="syne" style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800, marginBottom: 24 }}>START A PROJECT</h2>
-                
-                <div className="glass" style={{ padding: 36, borderRadius: 12, textAlign: "left" }}>
-                  {sent ? (
-                    <div style={{ textAlign: "center", padding: "20px 0" }}>
-                      <div style={{ color: T.emerald, fontSize: 18, fontWeight: 700, marginBottom: 8 }}>MESSAGE TRANSMITTED</div>
-                      <p style={{ color: T.silver, fontSize: 13 }}>I will get back to you within 24 hours.</p>
-                    </div>
-                  ) : (
-                    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                      <input placeholder="Your Name" style={{ width: "100%", background: "rgba(255,255,255,0.02)", border: `1px solid \${T.border}`, padding: 14, borderRadius: 4, color: "#fff" }} />
-                      <input placeholder="Your Email" style={{ width: "100%", background: "rgba(255,255,255,0.02)", border: `1px solid \${T.border}`, padding: 14, borderRadius: 4, color: "#fff" }} />
-                      <textarea placeholder="Describe the system framework or project requirements..." style={{ width: "100%", background: "rgba(255,255,255,0.02)", border: `1px solid \${T.border}`, padding: 14, borderRadius: 4, color: "#fff", minHeight: 100 }} />
-                      <button onClick={() => setSent(true)} className="btn-primary" style={{ background: T.emerald, color: "#000", border: "none", padding: 14, borderRadius: 4, fontWeight: 700, fontSize: 13 }}>
-                        SEND INQUIRY ?
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </section>
-          );
-        };
-
-        // --- MAIN APP ------------------------------------------------------------------
-        function App() {
-          return (
-            <>
-              <GlobalStyles />
-              <div className="grain-overlay" />
-              <ParticleCanvas />
-              <Nav />
-              <main style={{ maxWidth: 1400, margin: "0 auto" }}>
-                <Hero />
-                <Expertise />
-                <Experience />
-                <Work />
-                <NativeAdSlot />
-                <Contact />
-              </main>
-              <SocialAdSlot />
-              <footer style={{ padding: "32px 5%", borderTop: `1px solid \${T.border}`, textAlign: "center", fontSize: 11, color: T.muted }} className="mono">
-                © 2026 FAIZAN · ALL SYSTEMS OPERATIONAL
-              </footer>
-            </>
-          );
-        }
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
 </body>
 </html>
